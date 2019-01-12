@@ -215,6 +215,8 @@ class WC_Email_Base
         add_shortcode('woo_mb_user_password', array($this, 'processTag'));
         add_shortcode('woo_mb_custom_code', array($this, 'getCustomCode'));
 
+	    add_shortcode('woo_mb_user_funnel_password', array($this, 'processTag'));
+
         /* To get custom fields */
         if(!empty($this->order)){
             if(function_exists('wc_get_custom_checkout_fields')) {
