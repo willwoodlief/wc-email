@@ -216,6 +216,9 @@ class WC_Email_Base
         add_shortcode('woo_mb_custom_code', array($this, 'getCustomCode'));
 
 	    add_shortcode('woo_mb_user_funnel_password', array($this, 'processTag'));
+	    add_shortcode('woo_mb_user_email_plaintext', array($this, 'processTag'));
+
+
 
         /* To get custom fields */
         if(!empty($this->order)){
@@ -744,6 +747,22 @@ class WC_Email_Base
             $out['[woo_mb_user_email]'] = $user_data->user_email;
         } else {
             $out['[woo_mb_user_email]'] = $order->get_billing_email();
+        }
+
+        if (!empty($out['[woo_mb_user_email]'])) {
+        	$splity = explode('@',$out['[woo_mb_user_email]']);
+
+	        $parts = explode(".", $splity[1]);
+	        $domain_twigged_array = [];
+	        foreach ($parts as $part) {
+		        $domain_twigged_array[] = "<span>$part</span>";
+	        }
+	        $domain_twigged = implode('.',$domain_twigged_array);
+	        $safe_email = "<span>{$splity[0]}</span>@<span>$domain_twigged</span>";
+	        $out['[woo_mb_user_email_plaintext]'] =$safe_email;
+
+        } else {
+	        $out['[woo_mb_user_email_plaintext]'] ='';
         }
 
 	    $funnel_pw = get_user_meta($user_data->ID,'_ecomhub_fi_new_password',true);

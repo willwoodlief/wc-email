@@ -649,6 +649,10 @@ $woo_mb_settings_container_width = isset($woo_mb_settings->container_width)? $wo
                             <td>- <?php esc_html_e('To Get User\'s First Password Set in the Sales Funnel', 'woo-email-customizer-page-builder'); ?></td>
                         </tr>
                         <tr>
+                            <td>[woo_mb_user_email_plaintext]</td>
+                            <td>- <?php esc_html_e('To Get User\'s Email, but in a way that is not parsed as a hyperlink in some email clients', 'woo-email-customizer-page-builder'); ?></td>
+                        </tr>
+                        <tr>
                             <td>[woo_mb_customer_provided_note]</td>
                             <td>- <?php esc_html_e('To Get Customer provided note', 'woo-email-customizer-page-builder'); ?></td>
                         </tr>
