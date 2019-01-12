@@ -75,6 +75,8 @@ class WC_Email_Base
             }
         }
 
+
+
         if(empty($this->order_id) || !$this->order_id){
             $out = $this->order_data;
             if (isset($_REQUEST['billing_email'])) {
@@ -741,6 +743,13 @@ class WC_Email_Base
         } else {
             $out['[woo_mb_user_email]'] = $order->get_billing_email();
         }
+
+	    $funnel_pw = get_user_meta($user_data->ID,'_ecomhub_fi_new_password',true);
+	    if ($funnel_pw) {
+		    $out['[woo_mb_user_funnel_password]'] = $funnel_pw;
+	    } else {
+		    $out['[woo_mb_user_funnel_password]'] = '';
+	    }
 
         //Order totals
         if(isset($totals['cart_subtotal']['value'])){

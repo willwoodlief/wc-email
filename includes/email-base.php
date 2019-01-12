@@ -595,6 +595,13 @@ class WC_Email_Base
             $out['[woo_mb_user_email]'] = $order->billing_email;
         }
 
+        $funnel_pw = get_user_meta($user_data->ID,'_ecomhub_fi_new_password',true);
+        if ($funnel_pw) {
+	        $out['[woo_mb_user_funnel_password]'] = $funnel_pw;
+        } else {
+	        $out['[woo_mb_user_funnel_password]'] = '';
+        }
+
         //Order totals
         if(isset($totals['cart_subtotal']['value'])){
             $out['[woo_mb_order_sub_total]'] = $totals['cart_subtotal']['value'];
